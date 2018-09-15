@@ -13,6 +13,8 @@
 //GL.hpp will include a non-namespace-polluting set of opengl prototypes:
 #include "GL.hpp"
 
+//include functions dealing with walkmesh
+#include "WalkMesh.hpp"
 //Includes for libSDL:
 #include <SDL.h>
 

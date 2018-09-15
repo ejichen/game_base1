@@ -13,8 +13,10 @@ DIST=../dist
 all : \
 	$(DIST)/menu.p \
 	$(DIST)/meshes.pnc \
-	$(DIST)/crates.pnc \
-	$(DIST)/crates.scene \
+	$(DIST)/phone-bank.pnc \
+	$(DIST)/phone-bank.scene \
+	$(DIST)/walk-mesh.scene \
+	$(DIST)/stickochet.pnc \
 
 $(DIST)/%.p : %.blend export-meshes.py
 	$(BLENDER) --background --python export-meshes.py -- '$<' '$@'

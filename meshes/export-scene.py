@@ -78,6 +78,7 @@ def write_xfh(obj):
 
 	xfh_data += parent_ref
 	xfh_data += write_string(obj.name)
+	xfh_data += ref
 	xfh_data += struct.pack('3f', transform[0].x, transform[0].y, transform[0].z)
 	xfh_data += struct.pack('4f', transform[1].x, transform[1].y, transform[1].z, transform[1].w)
 	xfh_data += struct.pack('3f', transform[2].x, transform[2].y, transform[2].z)
@@ -113,9 +114,9 @@ def write_camera(obj):
 		camera_data += struct.pack('f', obj.data.ortho_scale)
 	else:
 		assert(False and "Unsupported camera type '" + obj.data.type + "'")
-	
+
 	camera_data += struct.pack('ff', obj.data.clip_start, obj.data.clip_end)
-		
+
 #write_lamp will add an object to the lamp section:
 def write_lamp(obj):
 	global lamp_data
@@ -146,7 +147,7 @@ def write_lamp(obj):
 		lamp_data += struct.pack('f', fov)
 	else:
 		lamp_data += struct.pack('f', 0.0)
-	
+
 
 for obj in bpy.data.objects:
 	if obj.layers[layer-1] == False: continue;

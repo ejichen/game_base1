@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Mode.hpp"
-
+#include "WalkMesh.hpp"
 #include "MeshBuffer.hpp"
 #include "GL.hpp"
 #include "Scene.hpp"
@@ -45,12 +45,15 @@ struct CratesMode : public Mode {
 	Scene scene;
 	Scene::Camera *camera = nullptr;
 
-	Scene::Object *large_crate = nullptr;
-	Scene::Object *small_crate = nullptr;
-
+	Scene::Object *player = nullptr;
+	Scene::Object *phone_001 = nullptr;
+	Scene::Object *phone_002 = nullptr;
+	Scene::Object *phone_003 = nullptr;
+	Scene::Object *phone_004 = nullptr;
 	//when this reaches zero, the 'dot' sample is triggered at the small crate:
 	float dot_countdown = 1.0f;
-
+	glm::vec3 player_normal = glm::vec3(1.0f, 0.0f, 0.0f);
+	WalkMesh::WalkPoint walk_point;
 	//this 'loop' sample is played at the large crate:
 	std::shared_ptr< Sound::PlayingSample > loop;
 };

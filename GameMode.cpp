@@ -25,17 +25,21 @@ MeshBuffer::Mesh cursor_mesh;
 MeshBuffer::Mesh doll_mesh;
 MeshBuffer::Mesh egg_mesh;
 MeshBuffer::Mesh cube_mesh;
+MeshBuffer::Mesh star_mesh;
 
 Load< MeshBuffer > meshes(LoadTagDefault, [](){
 	MeshBuffer const *ret = new MeshBuffer(data_path("meshes.pnc"));
-
 	tile_mesh = ret->lookup("Tile");
 	cursor_mesh = ret->lookup("Cursor");
 	doll_mesh = ret->lookup("Doll");
 	egg_mesh = ret->lookup("Egg");
 	cube_mesh = ret->lookup("Cube");
-
 	return ret;
+});
+Load< MeshBuffer > stickochet_meshes(LoadTagDefault, [](){
+  MeshBuffer const *stickochet = new MeshBuffer(data_path("stickochet.pnc"));
+	star_mesh = stickochet->lookup("Star");
+	return stickochet;
 });
 
 Load< GLuint > meshes_for_vertex_color_program(LoadTagDefault, [](){
@@ -50,7 +54,7 @@ GameMode::GameMode() {
 	board_rotations.reserve(board_size.x * board_size.y);
 	std::mt19937 mt(0xbead1234);
 
-	std::vector< MeshBuffer::Mesh const * > meshes{ &doll_mesh, &egg_mesh, &cube_mesh };
+	std::vector< MeshBuffer::Mesh const * > meshes{ &doll_mesh, &star_mesh, &cube_mesh };
 
 	for (uint32_t i = 0; i < board_size.x * board_size.y; ++i) {
 		board_meshes.emplace_back(meshes[mt()%meshes.size()]);
