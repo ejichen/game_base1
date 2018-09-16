@@ -13,7 +13,7 @@ Screen Shot:
 
 How To Play:
 
-Use the WASD to control the player, but the walk mesh is half-finished.
+Use the WASD to control the player, but the walk mesh is half-finished. Also, the game is still under cratesMode.
 
 Good / Bad / Ugly Code:
 The export python file was wriiten elegantly, however, the walk mesh part is messy and bulky. Still trying to find a way to reduce the complexity.
