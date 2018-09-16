@@ -1,11 +1,11 @@
 # Game Information
 (Note: fill in this portion with information about your game.)
 
-Title: (TODO: your game's title)
+Title: Another Infinite Night at the Orbital Phone Bank
 
-Author: (TODO: your name)
+Author: ijwo
 
-Design Document: [TODO: name of design document](TODO: link to design document)
+Design Document: [Another Infinite Night at the Orbital Phone Bank](http://graphics.cs.cmu.edu/courses/15-466-f18/game1-designs/default/)
 
 Screen Shot:
 
@@ -13,15 +13,10 @@ Screen Shot:
 
 How To Play:
 
-TODO: describe the controls and (if needed) goals/strategy.
-
-Changes From The Design Document:
-
-TODO: what did you need to add/remove/modify from the original design? Why?
+Use the WASD to control the player, but the walk mesh is half-finished.
 
 Good / Bad / Ugly Code:
-
-TODO: provide examples of code you wrote from this project that you think is good (elegant, simple, useful), bad (hack-y, brittle, unreadable), and ugly (particularly inelegant). Provide a sentence or two of justification for the examples.
+The export python file was wriiten elegantly, however, the walk mesh part is messy and bulky. Still trying to find a way to reduce the complexity.
 
 # Using This Base Code
 

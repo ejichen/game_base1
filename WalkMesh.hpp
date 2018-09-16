@@ -49,6 +49,8 @@ struct WalkMesh {
 			vertices[wp.triangle.z] - vertices[wp.triangle.x]
 		));
 	}
+
+
   WalkMesh(std::string const &filename);
 };
 

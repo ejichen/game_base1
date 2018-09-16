@@ -256,9 +256,9 @@ WalkMesh::WalkPoint WalkMesh::start(glm::vec3 const &world_point) const {
 		glm::vec3 closestPoint;
 		WalkMesh::closestpt2triangle(trianglePoints, world_point, closestPoint);
 		dis = glm::distance(closestPoint, world_point);
-		std::cout << min << " " << dis << std::endl;
+		// std::cout << min << " " << dis /<< std::endl;
 		if(dis < min){
-			counter++;	
+			counter++;
 			min = dis;
 			closest.triangle = triangle;
 			float u =  0.f;
@@ -287,24 +287,38 @@ void WalkMesh::walk(WalkPoint &wp, glm::vec3 const &step) const {
 	weights_step = glm::vec3(u, v, w) + wp.weights;
 // std::cout << u << " " << v << " " << w << std::endl;
 	//TODO: when does wp.weights + t * weights_step cross a triangle edge?
-	float t = 1.0f;
-	t = weights_step[0] + weights_step[1] + weights_step[2];
+	// float t = 1.0f;
+	// t = weights_step[0] + weights_step[1] + weights_step[2];
 
 	if (u >= 0 && v >= 0 && w >=0) { //if a triangle edge is not crossed
 		//TODO: wp.weights gets moved by weights_step, nothing else needs to be d1.
 
 		wp.weights = glm::vec3(u, v, w);
 	} else { //if a triangle edge is crossed
-		WalkPoint new_wp;
-		new_wp = WalkMesh::start(post_point);
-		wp = new_wp;
-		//TODO: wp.weights gets moved to triangle edge, and step gets reduced
-		//if there is another triangle over the edge:
-			//TODO: wp.triangle gets updated to adjacent triangle
-			//TODO: step gets rotated over the edge
-		//else if there is no other triangle over the edge:
-			//TODO: wp.triangle stays the same.
-			//TODO: step gets updated to slide along the edge
+		// WalkPoint new_wp;
+		//find which edge has been crossed
+		//reference eric1221bday
+		float reduced_coeff = 0.f;
+		glm::uvec2 crossed_edge;
+		if (u < 0) {
+			//cross point 1 and 2
+		 reduced_coeff = wp.weights.x / -weights_step.x;
+		 crossed_edge = glm::uvec2(wp.triangle[2], wp.triangle[1]);
+	 } else if (v < 0) {
+		 reduced_coeff = wp.weights.y / -weights_step.y;
+		 crossed_edge = glm::uvec2(wp.triangle[0], wp.triangle[2]);
+	 } else  {
+		 //w < 0, where the edge fromed by point 0 and point 1 has been crossed
+		 reduced_coeff = wp.weights.z / -weights_step.z;
+		 crossed_edge = glm::uvec2(wp.triangle[1], wp.triangle[0]);
+	 }
+
+	 //find the next triangle
+	 if (next_vertex.find(crossed_edge) !=  next_vertex.end()) {
+		 std::cout << "find edge" << std::endl;
+		 // auto third_vertex = next_vertex.at(crossed_edge);
+
+	 }
 
 
 	}

@@ -15,7 +15,6 @@ all : \
 	$(DIST)/meshes.pnc \
 	$(DIST)/phone-bank.pnc \
 	$(DIST)/phone-bank.scene \
-	$(DIST)/walk-mesh.scene \
 	$(DIST)/stickochet.pnc \
 
 $(DIST)/%.p : %.blend export-meshes.py
@@ -26,3 +25,4 @@ $(DIST)/%.pnc : %.blend export-meshes.py
 
 $(DIST)/%.scene : %.blend export-scene.py
 	$(BLENDER) --background --python export-scene.py -- '$<' '$@'
+blender --background --python meshes/export-walk-mesh.py -- meshes/phone-bank.blend dist/walk-mesh.scene
